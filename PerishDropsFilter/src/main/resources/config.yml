@@ -1,0 +1,8 @@
+# Valid entries can be found at the following link:
+# https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+
+keep-inventory: true
+
+whitelisted:
+  - WOODEN_PICKAXE
+  - END_STONE_BRICK_SLAB
