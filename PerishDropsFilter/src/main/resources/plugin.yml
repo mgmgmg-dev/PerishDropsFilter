@@ -1,6 +1,0 @@
-name: PerishDropsFilter
-version: '${project.version}'
-main: me.mgmgmg.perishdropsfilter.PDF
-api-version: '1.20'
-author: mgmgmg
-description: PDF, a simple plugin to manage drops (Get it? PDF like the file extension)
