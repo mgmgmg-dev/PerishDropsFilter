@@ -9,6 +9,7 @@ public final class PDF extends JavaPlugin {
         // Plugin initialisation
         saveDefaultConfig();
         ConfigManager.init(this);
+        getServer().getPluginManager().registerEvents(new PerishEvent(), this);
 
         // DEBUG
         getLogger().info("Plugin enabled!");
