@@ -1,16 +1,23 @@
 # Valid item entries can be found at the following link:
 # https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
 
+# mode >>> If set to WHITELIST, items in list are valid. Vice versa with BLACKLIST.
+# keep-inventory >>> If set to true, players will keep valid items. If false, they will drop them.
+# void-non-valid >>> If set to true, the plugin will void non-valid items.
+#                L-> If false, non-valid items will act opposite to valid items as per the setting "keep-inventory".
+
 worlds:
   world:
     mode: WHITELIST
     keep-inventory: true
+    void-non-valid: true
     items:
-      - WOODEN_PICKAXE
-      - WOODEN_SWORD
+      - WOOD_PICKAXE
+      - WOOD_SWORD
   world_the_end:
     mode: BLACKLIST
     keep-inventory: true
+    void-non-valid: true
     items:
       - STONE_AXE
-      - STONE_SHOVEL
+      - STONE_SPADE

@@ -11,7 +11,7 @@ public class PerishEvent implements Listener {
         ConfigManager.WorldSettings settings = ConfigManager.getWorldSettings().get(event.getEntity().getWorld().getName());
         if (settings == null) return;
         if (settings.isKeepInventory()) {
-            // Makes sure the player gets to keep their inventory and xp
+            // Makes sure the player gets to keep their inventory
             event.setKeepInventory(true);
 
             // Removes all non-valid items
@@ -20,11 +20,21 @@ public class PerishEvent implements Listener {
                     event.getEntity().getInventory().remove(stack);
             }
 
-            // Prevents items from being dropped
-            event.getDrops().clear();
+            // Either prevents items from being dropped or drops non-valid items
+            if (settings.isVoidNonValid()) event.getDrops().clear();
+            else event.getDrops().removeIf(stack -> stack != null && settings.isValid(stack.getType()));
         } else {
             // Removes all non-valid drops
             event.getDrops().removeIf(stack -> stack != null && settings.isNotValid(stack.getType()));
+
+            // Keeps all non-valid items if necessary
+            if (settings.isVoidNonValid()) {
+                event.setKeepInventory(true);
+                for (ItemStack stack : event.getEntity().getInventory().getStorageContents()) {
+                    if (stack != null && settings.isValid(stack.getType()))
+                        event.getEntity().getInventory().remove(stack);
+                }
+            }
         }
     }
 }

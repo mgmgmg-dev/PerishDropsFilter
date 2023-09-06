@@ -32,6 +32,7 @@ public class ConfigManager {
         private final Set<Material> materials = new HashSet<>();
         private final boolean mode; // true = whitelist, false = blacklist
         private final boolean keepInventory;
+        private final boolean voidNonValid;
 
         public WorldSettings(ConfigurationSection section) {
             // mode
@@ -50,6 +51,9 @@ public class ConfigManager {
             // keep-inventory
             keepInventory = section.getBoolean("keep-inventory");
 
+            // void-non-valid
+            voidNonValid = section.getBoolean("void-non-valid");
+
             // items
             for (String string : section.getStringList("items")) {
                 string = string.toUpperCase();
@@ -64,8 +68,16 @@ public class ConfigManager {
             }
         }
 
+        public boolean isValid(Material material) {
+            return materials.contains(material) == mode;
+        }
+
         public boolean isNotValid(Material material) {
             return materials.contains(material) != mode;
+        }
+
+        public boolean isVoidNonValid() {
+            return voidNonValid;
         }
 
         public boolean isKeepInventory() {
