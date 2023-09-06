@@ -3,3 +3,4 @@ version: '${project.version}'
 main: me.mgmgmg.perishdropsfilter.PDF
 author: mgmgmg
 description: PDF, a simple plugin to manage drops (Get it? PDF like the file extension)
+api-version: 1.13
